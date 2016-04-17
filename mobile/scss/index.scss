@@ -20,6 +20,7 @@
     padding: 0 px2rem(24px);
     @include box-sizing(border-box);
     font-size: 0;
+    border-bottom: 1px solid #d9d9d9;
     &::before {
         content: '.';
         display: inline-block;
@@ -79,4 +80,61 @@
     .cancel-btn {
         display: inline-block;
     }
+}
+
+.result-item-container {
+    padding: px2rem(30px);
+    border-bottom: 1px solid #d9d9d9;
+
+    img {
+        float: left;
+        width: px2rem(112px);
+    }
+}
+
+.result-item {
+    padding: 0 px2rem(57px) 0 px2rem(142px);
+    line-height: 1.2;
+}
+
+.download-icon {
+    float: right;
+    margin-top: px2rem(30px);
+    img {
+        width: px2rem(47px);
+    }
+}
+
+.filename {
+    @include px2px(font-size, 36px);
+    font-weight: bold;
+    color: #292929;
+}
+
+.file-thumb-info {
+    //font-size: 0;
+    @include px2px(font-size, 32px);
+    color: #292929;
+    margin-top: px2rem(10px);
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    //span {
+    //    @include px2px(font-size, 32px);
+    //    margin-right: 5px;
+    //}
+}
+
+.file-download-info {
+    margin-top: px2rem(10px);
+    @include px2px(font-size, 28px);
+    color: #aaaaaa;
+}
+
+.file-thumb-content {
+    margin-top: px2rem(15px);
+    @include px2px(font-size, 30px);
+    color: #737373;
 }

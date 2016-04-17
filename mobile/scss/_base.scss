@@ -12,6 +12,7 @@ body {
     @extend html;
     position: relative;
     @include px2px(font-size, 32px, true);
+    font-family: $commonFont;
 }
 
 a {
