@@ -3,6 +3,17 @@
 @import "base";
 @import "func";
 
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?cp7w6y');
+    src: url('../fonts/icomoon.eot?cp7w6y#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?cp7w6y') format('truetype'),
+    url('../fonts/icomoon.woff?cp7w6y') format('woff'),
+    url('../fonts/icomoon.svg?cp7w6y#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .search {
     height: px2rem(90px);
     background-color: #ececec;
@@ -20,9 +31,21 @@
 
 .search-input-field {
     display: inline-block;
-    width: 85%;
-    height: px2rem(50px);
+    position: relative;
+    width: 100%;
+    height: px2rem(60px);
     vertical-align: middle;
+
+    &::before {
+        content: '\e900';
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        @include translateY(-50%);
+        font-family: 'icomoon';
+        color: #c9c9c9;
+        font-size: px2rem(35px);
+    }
 
     input {
         width: 100%;
@@ -31,15 +54,29 @@
         border-radius: 5px;
         color: #6e6e6f;
         vertical-align: middle;
-        @include px2px(font-size, 32px);
+        padding-left: px2rem(55px);
+        font-size: px2rem(32px);
+        //@include px2px(font-size, 32px);
         @include box-sizing(border-box);
     }
 }
 
-.search-button {
+.cancel-btn {
     display: inline-block;
     vertical-align: middle;
     @include px2px(font-size, 32px);
+    //font-size: px2rem(32px);
     color: #6e6e6f;
-    margin-left: px2rem(20px);
+    margin-left: px2rem(25px);
+    display: none;
+}
+
+.show-cancel-btn {
+    .search-input-field {
+        width: 85%;
+    }
+    
+    .cancel-btn {
+        display: inline-block;
+    }
 }
