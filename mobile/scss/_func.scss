@@ -21,3 +21,7 @@
 @function px2rem($px, $base:75px) {
     @return ($px / $base * 1rem);
 }
+
+@function px2rem2($px, $base: 64px) {
+    @return ($px / $base * 1rem);
+}
