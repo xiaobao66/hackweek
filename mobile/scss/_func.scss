@@ -1,9 +1,23 @@
-@mixin px2px($name, $px) {
-    #{$name}: ($px / 2);
-    [data-dpr="2"] & {
-        #{$name}: $px;
+@mixin px2px($name, $px, $important:false) {
+    @if $important == true {
+        #{$name}: ($px / 2) !important;
+        [data-dpr="2"] & {
+            #{$name}: $px !important;
+        }
+        [data-dpr="3"] & {
+            #{$name}: ($px / 2 * 3) !important;
+        }
+    } @else {
+        #{$name}: ($px / 2);
+        [data-dpr="2"] & {
+            #{$name}: $px;
+        }
+        [data-dpr="3"] & {
+            #{$name}: ($px / 2 * 3);
+        }
     }
-    [data-dpr="3"] & {
-        #{$name}: ($px / 2 * 3);
-    }
+}
+
+@function px2rem($px, $base:75px) {
+    @return ($px / $base * 1rem);
 }

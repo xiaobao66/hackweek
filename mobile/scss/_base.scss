@@ -1,0 +1,30 @@
+@import "func";
+
+$commonFont: STHeiTi, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
+
+html {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    height: 100%;
+}
+
+body {
+    @extend html;
+    position: relative;
+    @include px2px(font-size, 32px, true);
+}
+
+a {
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+    text-decoration: none;
+}
+
+input,
+button,
+select,
+textarea {
+    outline: none;
+    padding: 0;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
