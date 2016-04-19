@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var compass = require('gulp-compass');
+var webpack = require('gulp-webpack');
 
 gulp.task('mobile_sass', function () {
     return gulp.src('./mobile/scss/*.scss')
@@ -15,8 +16,22 @@ gulp.task('mobile_sass', function () {
         .pipe(gulp.dest('./mobile/styles'));
 });
 
-gulp.task('watch', function () {
-    gulp.watch('./mobile/scss/*.scss', ['mobile_sass']);
+gulp.task('mobile_webpack', function () {
+    return gulp.src('./mobile/scripts/src/index.js')
+        .pipe(webpack({
+            entry: {
+                index: './mobile/scripts/src/index.js'
+            },
+            output: {
+                filename: '[name].js'
+            }
+        }))
+        .pipe(gulp.dest('./mobile/scripts/dist/'));
 });
 
-gulp.task('default', ['mobile_sass', 'watch']);
+gulp.task('watch', function () {
+    gulp.watch('./mobile/scss/*.scss', ['mobile_sass']);
+    gulp.watch('./mobile/scripts/src/*.js', ['mobile_webpack']);
+});
+
+gulp.task('default', ['mobile_sass', 'mobile_webpack', 'watch']);

@@ -76,7 +76,7 @@
     .search-input-field {
         width: 85%;
     }
-    
+
     .cancel-btn {
         display: inline-block;
     }
@@ -137,4 +137,18 @@
     @include px2px(font-size, 28px);
     line-height: 1.2;
     color: #737373;
+}
+
+.load-more-container {
+    margin-top: px2rem(20px);
+    text-align: center;
+}
+
+.load-more-report {
+    display: inline-block;
+    @include px2px(font-size, 32px);
+    color: #aaaaaa;
+    background-color: #ececec;
+    border-radius: 10px;
+    @include px2px(padding, 12px);
 }

@@ -14,16 +14,16 @@
 <body>
 <header class="search">
     <div class="search-input-field">
-        <input type="text">
+        <input type="text" id="search-input">
     </div>
     <a href="javascript:;" class="cancel-btn">取消</a>
 </header>
 <section class="result-container">
     <div class="result-item-container">
         <img class="result-filetype-icon" src="images/word.png">
-        <a href="javascript:;" class="download-icon">
-            <img src="images/download.png">
-        </a>
+        <!--<a href="javascript:;" class="download-icon">-->
+            <!--<img src="images/download.png">-->
+        <!--</a>-->
         <div class="result-item">
             <h3 class="filename">C课设 报告&代码</h3>
             <p class="file-thumb-info">
@@ -40,6 +40,11 @@
             </p>
         </div>
     </div>
+    <div class="load-more-container">
+        <a href="javascript:;" class="load-more-report">点击加载更多报告</a>
+    </div>
 </section>
+<script type="text/javascript" src="scripts/lib/zepto.min.js"></script>
+<script type="text/javascript" src="scripts/dist/index.js"></script>
 </body>
 </html>
