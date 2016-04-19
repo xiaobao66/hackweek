@@ -14,6 +14,16 @@
     font-style: normal;
 }
 
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+* {
+    max-height: 99999999999999px;
+}
+
 .search {
     height: px2rem(90px);
     background-color: #ececec;
@@ -55,7 +65,7 @@
         border-radius: 5px;
         color: #6e6e6f;
         vertical-align: middle;
-        padding-left: px2rem(55px);
+        padding-left: px2rem(60px);
         font-size: px2rem(32px);
         //@include px2px(font-size, 32px);
         @include box-sizing(border-box);
@@ -82,18 +92,28 @@
     }
 }
 
-.result-item-container {
-    padding: px2rem(30px);
-    border-bottom: 1px solid #d9d9d9;
+.result-container {
+    position: absolute;
+    width: 100%;
+    top: px2rem(90px);
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
 
+//.result-item-container {
+//
+//}
+
+.result-item {
+    padding: px2rem(30px) px2rem(87px) px2rem(30px) px2rem(172px);
+    //padding: px2rem(30px);
+    border-bottom: 1px solid #d9d9d9;
     img {
         float: left;
         width: px2rem(112px);
+        margin-left: px2rem(-142px);
     }
-}
-
-.result-item {
-    padding: 0 px2rem(57px) 0 px2rem(142px);
 }
 
 .download-icon {
@@ -140,7 +160,7 @@
 }
 
 .load-more-container {
-    margin-top: px2rem(20px);
+    padding: px2rem(20px);
     text-align: center;
 }
 
