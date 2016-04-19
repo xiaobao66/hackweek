@@ -24,6 +24,10 @@ body {
     max-height: 99999999999999px;
 }
 
+.hide {
+    display: none;
+}
+
 .search {
     height: px2rem(90px);
     background-color: #ececec;
@@ -99,6 +103,24 @@ body {
     bottom: 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.mask-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.loading-icon {
+    position: absolute;
+    width: px2rem(200px);
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    z-index: 3;
 }
 
 //.result-item-container {

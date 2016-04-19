@@ -24,6 +24,11 @@ gulp.task('mobile_webpack', function () {
             },
             output: {
                 filename: '[name].js'
+            },
+            module: {
+                loaders: [{
+                    test: /\.html$/, loader: 'tmodjs'
+                }]
             }
         }))
         .pipe(gulp.dest('./mobile/scripts/dist/'));

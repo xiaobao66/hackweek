@@ -1,28 +1,25 @@
-<div class="result-item-container">
-    {{if type === 'doc' || type === 'docx'}}
+{{each result}}
+<div class="result-item">
+    <input type="hidden" value="{{$value.document_id}}">
+    {{if $value.type === 'doc' || $value.type === 'docx'}}
     <img class="result-filetype-icon" src="images/word.png">
-    {{else if type === 'ppt' || type === 'pptx'}}
+    {{else if $value.type === 'ppt' || $value.type === 'pptx'}}
     <img class="result-filetype-icon" src="images/ppt.png">
-    {{else if type === 'pdf'}}
+    {{else if $value.type === 'pdf'}}
     <img class="result-filetype-icon" src="images/pdf.png">
     {{/if}}
-    <!--<a href="javascript:;" class="download-icon">-->
-    <!--<img src="images/download.png">-->
-    <!--</a>-->
-    <div class="result-item">
-        <input type="hide" value="{{document_id}}">
-        <h3 class="filename">{{document_name}}</h3>
-        <p class="file-thumb-info">
-            <!--<span class="author-academy">13级计算机学院</span>-->
-            <!--<span class="experiment-name">C语言课设</span>-->
-            <!--<span class="author-name">雪君</span>-->
-            {{institude class uploader}}
-        </p>
-        <p class="file-download-info">
-            已有<span class="download-num">{{downloads}}</span>人下载
-        </p>
-        <p class="file-thumb-content">
-            {{document_thumb}}
-        </p>
-    </div>
+    <h3 class="filename">{{$value.document_name}}</h3>
+    <p class="file-thumb-info">
+        <!--<span class="author-academy">13级计算机学院</span>-->
+        <!--<span class="experiment-name">C语言课设</span>-->
+        <!--<span class="author-name">雪君</span>-->
+        {{$value.institude}} {{$value.class}} {{$value.uploader}}
+    </p>
+    <p class="file-download-info">
+        已有<span class="download-num">{{$value.downloads}}</span>人下载
+    </p>
+    <p class="file-thumb-content">
+        {{$value.document_thumb}}
+    </p>
 </div>
+{{/each}}
