@@ -57,7 +57,7 @@
 	//         downloads: 234,
 	//         type: 'doc',
 	//         document_thumb: '这是一小段简洁的介绍，大致介绍文档中的部分内容。这是一小段简洁的介绍，大致介绍文档中的部分内容。'
-	//     },{
+	//     }, {
 	//         document_id: 2,
 	//         document_name: 'C课设 代码&报告',
 	//         uploader: '雪君',
@@ -66,7 +66,7 @@
 	//         downloads: 23,
 	//         type: 'pdf',
 	//         document_thumb: '这是一小段简洁的介绍，大致介绍文档中的部分内容。这是一小段简洁的介绍，大致介绍文档中的部分内容。'
-	//     },{
+	//     }, {
 	//         document_id: 3,
 	//         document_name: 'C课设 代码&报告',
 	//         uploader: '雪君',
@@ -75,7 +75,7 @@
 	//         downloads: 12,
 	//         type: 'ppt',
 	//         document_thumb: '这是一小段简洁的介绍，大致介绍文档中的部分内容。这是一小段简洁的介绍，大致介绍文档中的部分内容。'
-	//     },{
+	//     }, {
 	//         document_id: 4,
 	//         document_name: 'C课设 代码&报告',
 	//         uploader: '雪君',
@@ -87,14 +87,69 @@
 	//     }]
 	// };
 
+	function loadMoreReport(e) {
+	    var $this = $(e.target);
+	    if (parseInt($this.attr('disabled')) === 1) {
+	        return;
+	    } else {
+	        $this.attr('disabled', 1);
+	        $this.text('努力加载中...');
+	        // setTimeout(function () {
+	        //     $this.remove();
+	        //     $('.result-item-container').append(searchResult(test_data));
+	        //     $('.result-item-container').append(loadMore());
+	        //     $('.load-more-report').on('click', loadMoreReport);
+	        // }, 500);
+	        $.ajax({}).done(function (data) {
+	            $this.remove();
+	            $('.result-item-container').append(searchResult(data));
+	            $('.result-item-container').append(loadMore());
+	            $('.load-more-report').on('click', loadMoreReport);
+	        }).fail(function () {
+
+	        });
+	    }
+	}
+
 	var attachFastClick = Origami.fastclick;
 	attachFastClick(document.body);
 	$('#search-input').on('focus', function () {
 	    $('.search').addClass('show-cancel-btn');
+	    // $('.mask-layer').removeClass('hide');
 	});
 
 	$('#search-input').on('blur', function () {
 	    $('.search').removeClass('show-cancel-btn');
+	});
+
+	$('#search-input').on('keyup', function (e) {
+	    if (e.keyCode === 13) {
+	        // $('.result-item-container').empty();
+	        // $('.load-more-container').remove();
+	        // $('.loading-icon').removeClass('hide');
+	        // setTimeout(function () {
+	        //     $('.result-item-container').append(searchResult(test_data));
+	        //     $('.result-item-container').append(loadMore());
+	        //     $('.load-more-report').on('click', loadMoreReport);
+	        //     $('.loading-icon').addClass('hide');
+	        // }, 500);
+	        var searchContent = $(e.target).val();
+	        $('.loading-icon').removeClass('hide');
+	        $.ajax({
+	            url: '/search',
+	            type: 'POST',
+	            data: {keyword: searchContent}
+	        }).done(function (data) {
+	            $('.result-item-container').empty();
+	            $('.load-more-container').remove();
+	            $('.result-item-container').append(searchResult(data));
+	            $('.result-item-container').append(loadMore());
+	            $('.load-more-report').on('click', loadMoreReport);
+	            $('.loading-icon').addClass('hide');
+	        }).fail(function () {
+
+	        });
+	    }
 	});
 
 	$('.cancel-btn').on('click', function (e) {
@@ -113,20 +168,6 @@
 	//
 	// });
 
-	function loadMoreReport(e) {
-	    var $this = $(e.target);
-	    if (parseInt($this.attr('disabled')) === 1) {
-	        return;
-	    } else {
-	        $this.text('努力加载中...');
-	        setTimeout(function () {
-	            $this.remove();
-	            $('.result-item-container').append(searchResult(test_data));
-	            $('.result-item-container').append(loadMore());
-	            $('.load-more-report').on('click', loadMoreReport);
-	        }, 500);
-	    }
-	}
 	// $('.load-more-report').on('click', loadMoreReport);
 
 /***/ },
@@ -253,7 +294,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);
-	module.exports=template('mobile/tpl/load-more','<div class="load-more-container"> <a href="javascript:;" class="load-more-report">点击加载更多报告</a> </div>');
+	module.exports=template('mobile/tpl/load-more','<div class="load-more-container"> <a href="javascript:;" class="load-more-report" disabled="0">点击加载更多报告</a> </div>');
 
 /***/ }
 /******/ ]);
