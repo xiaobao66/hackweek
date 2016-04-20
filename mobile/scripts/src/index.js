@@ -1,5 +1,5 @@
-var searchResult = require('../../tpl/search-result.html');
-var loadMore = require('../../tpl/load-more.html');
+var searchResult = require('../../tpl/search-result.tpl');
+var loadMore = require('../../tpl/load-more.tpl');
 
 // var test_data = {
 //     result: [{
@@ -115,11 +115,13 @@ $('.cancel-btn').on('click', function (e) {
 // $('.result-item-container').append(searchResult(test_data));
 // $('.result-item-container').append(loadMore());
 
-// $.ajax({
-//     url: '/main_page',
-//     type: 'GET'
-// }).done(function (data) {
-//
-// });
+$.ajax({
+    url: '/main_page',
+    type: 'GET'
+}).done(function (data) {
+
+}).fail(function (xhr, errorType, error) {
+    
+});
 
 // $('.load-more-report').on('click', loadMoreReport);

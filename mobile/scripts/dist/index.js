@@ -161,12 +161,14 @@
 	// $('.result-item-container').append(searchResult(test_data));
 	// $('.result-item-container').append(loadMore());
 
-	// $.ajax({
-	//     url: '/main_page',
-	//     type: 'GET'
-	// }).done(function (data) {
-	//
-	// });
+	$.ajax({
+	    url: '/main_page',
+	    type: 'GET'
+	}).done(function (data) {
+
+	}).fail(function (xhr, errorType, error) {
+	    
+	});
 
 	// $('.load-more-report').on('click', loadMoreReport);
 

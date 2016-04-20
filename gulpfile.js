@@ -27,7 +27,7 @@ gulp.task('mobile_webpack', function () {
             },
             module: {
                 loaders: [{
-                    test: /\.html$/, loader: 'tmodjs'
+                    test: /\.tpl$/, loader: 'tmodjs'
                 }]
             }
         }))
