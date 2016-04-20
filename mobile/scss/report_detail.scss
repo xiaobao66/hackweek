@@ -1,0 +1,137 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "base";
+
+* {
+    max-height: 999999999999px;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+.report-container {
+    padding: px2rem(36px) px2rem(64px) px2rem(48px) px2rem(172px);
+    border-bottom: 2px solid #d9d9d9;
+    background-color: #fff;
+    img {
+        float: left;
+        width: px2rem(112px);
+        margin-left: px2rem(-132px);
+    }
+}
+
+.report-name {
+    @include px2px(font-size, 32px);
+    font-weight: bold;
+    color: #292929;
+}
+
+.report-thumb {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include px2px(font-size, 28px);
+    margin-top: px2rem(12px);
+    color: #292929;
+}
+
+.report-download-info {
+    @include px2px(font-size, 24px);
+    margin-top: px2rem(12px);
+    color: #aaa;
+}
+
+.report-preview-container {
+    position: relative;
+    height: 60%;
+    padding: px2rem(20px) px2rem(25px);
+}
+
+.report-type-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include translate(6%, 20%);
+    padding: px2rem(12px) px2rem(16px);
+    background-color: #2b5796;
+    color: #fff;
+    @include px2px(font-size, 24px);
+    z-index: 2;
+}
+
+.report-preview {
+    position: absolute;
+    top: px2rem(20px);
+    bottom: px2rem(20px);
+    left: px2rem(25px);
+    right: px2rem(25px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.report-preview-miss {
+    img {
+        position: absolute;
+        width: px2rem(510px);
+        left: 50%;
+        top: 50%;
+        @include translate(-50%, -50%);
+    }
+}
+
+.report-download {
+    padding-top: px2rem(20px);
+    text-align: center;
+}
+
+.show-download-info {
+    .download-btn {
+        display: none;
+    }
+    .report-download-container {
+        display: block;
+    }
+}
+
+.download-btn {
+    display: inline-block;
+    @include px2px(font-size, 26px);
+    color: #fff;
+    background-color: #2b5796;
+    padding: px2rem(20px) px2rem(100px);
+    border-radius: 20px;
+}
+
+.report-download-container {
+    display: none;
+    width: 60%;
+    margin: 0 auto;
+    p {
+        line-height: 1.2;
+        color: #292929;
+        @include px2px(font-size, 26px);
+    }
+    .report-download-id {
+        margin-top: px2rem(20px);
+        span {
+            @include px2px(font-size, 28px);
+            display: inline-block;
+            background-color: #2b5796;
+            color: #fff;
+            padding: px2rem(15px) px2rem(45px);
+            border-radius: 20px;
+        }
+    }
+}

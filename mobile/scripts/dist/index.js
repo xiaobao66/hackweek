@@ -395,7 +395,7 @@
 
 
 	// module
-	exports.push([module.id, ".reminder-container{position:absolute;top:45%;left:50%;-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:60%;background-color:#999;color:#fff;border-radius:5px;z-index:4}.reminder-content{font-size:16px;text-align:center;line-height:1.2;padding:.4rem}[data-dpr=\"2\"] .reminder-content{font-size:32px}[data-dpr=\"3\"] .reminder-content{font-size:48px}.reminder-control{border-top:.01333rem solid #fff}.reminder-control a{display:block;padding:.2rem 0;text-align:center;color:#fff}.reminder-container-hide{display:none}", ""]);
+	exports.push([module.id, ".reminder-container{position:absolute;top:45%;left:50%;-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:60%;background-color:#999;color:#fff;border-radius:15px;z-index:4}.reminder-content{font-size:16px;text-align:center;line-height:1.2;padding:.4rem}[data-dpr=\"2\"] .reminder-content{font-size:32px}[data-dpr=\"3\"] .reminder-content{font-size:48px}.reminder-control{border-top:.01333rem solid #fff}.reminder-control a{display:block;padding:.2rem 0;text-align:center;color:#fff}.reminder-container-hide{display:none}", ""]);
 
 	// exports
 
