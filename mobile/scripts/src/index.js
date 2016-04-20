@@ -1,6 +1,7 @@
 var searchResult = require('../../tpl/search-result.tpl');
 var loadMore = require('../../tpl/load-more.tpl');
 var endLine = require('../../tpl/end-line.tpl');
+var Reminder = require('./reminder');
 
 // var test_data = {
 //     result: [{
@@ -77,6 +78,9 @@ $('#search-input').on('focus', function () {
     // $('.mask-layer').removeClass('hide');
 });
 
+var reminder = new Reminder();
+reminder.init();
+
 $('#search-input').on('blur', function () {
     $('.search').removeClass('show-cancel-btn');
 });
@@ -136,7 +140,8 @@ $.ajax({
         $('.load-more-report').on('click', loadMoreReport);
     }
 }).fail(function (xhr, errorType, error) {
-
+    $('.loading-icon').addClass('hide');
+    reminder.show('网络连接错误，请重试');
 });
 
 // $('.load-more-report').on('click', loadMoreReport);

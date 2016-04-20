@@ -1,0 +1,36 @@
+@import "compass/css3";
+@import "../../../scss/func";
+
+.reminder-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    width: 60%;
+    //padding: 8% 5%;
+    background-color: #999;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 4;
+}
+
+.reminder-content {
+    @include px2px(font-size, 32px);
+    text-align: center;
+    line-height: 1.2;
+    padding: px2rem(30px);
+}
+
+.reminder-control {
+    border-top: px2rem(1px) solid #fff;
+    a {
+        display: block;
+        padding: px2rem(15px) 0 px2rem(15px);
+        text-align: center;
+        color: #fff;
+    }
+}
+
+.reminder-container-hide {
+    display: none;
+}
