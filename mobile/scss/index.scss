@@ -179,6 +179,12 @@ body {
     @include px2px(font-size, 28px);
     line-height: 1.2;
     color: #737373;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .load-more-container {
@@ -193,4 +199,21 @@ body {
     background-color: #ececec;
     border-radius: 10px;
     @include px2px(padding, 12px);
+}
+
+.end-line {
+    margin-top: px2rem(30px);
+    margin-bottom: px2rem(30px);
+    border-top: 1px solid #ccc;
+    position: relative;
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translate(-50%, -50%);
+        padding: px2rem(10px);
+        color: #aaa;
+        background: #fff;
+        @include px2px(font-size, 32px);
+    }
 }

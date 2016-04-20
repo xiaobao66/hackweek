@@ -46,6 +46,7 @@
 
 	var searchResult = __webpack_require__(1);
 	var loadMore = __webpack_require__(3);
+	var endLine = __webpack_require__(4);
 
 	// var test_data = {
 	//     result: [{
@@ -102,9 +103,13 @@
 	        // }, 500);
 	        $.ajax({}).done(function (data) {
 	            $this.remove();
-	            $('.result-item-container').append(searchResult(data));
-	            $('.result-item-container').append(loadMore());
-	            $('.load-more-report').on('click', loadMoreReport);
+	            if (data.result.length === 0) {
+	                $('.result-item-container').append(endLine());
+	            } else {
+	                $('.result-item-container').append(searchResult(data));
+	                $('.result-item-container').append(loadMore());
+	                $('.load-more-report').on('click', loadMoreReport);
+	            }
 	        }).fail(function () {
 
 	        });
@@ -140,12 +145,15 @@
 	            type: 'POST',
 	            data: {keyword: searchContent}
 	        }).done(function (data) {
-	            $('.result-item-container').empty();
-	            $('.load-more-container').remove();
-	            $('.result-item-container').append(searchResult(data));
-	            $('.result-item-container').append(loadMore());
-	            $('.load-more-report').on('click', loadMoreReport);
 	            $('.loading-icon').addClass('hide');
+	            $('.result-item-container').empty();
+	            if (data.result.length === 0) {
+	                $('.result-item-container').append(endLine());
+	            } else {
+	                $('.result-item-container').append(searchResult(data));
+	                $('.result-item-container').append(loadMore());
+	                $('.load-more-report').on('click', loadMoreReport);
+	            }
 	        }).fail(function () {
 
 	        });
@@ -165,9 +173,16 @@
 	    url: '/main_page',
 	    type: 'GET'
 	}).done(function (data) {
-
+	    $('.loading-icon').addClass('hide');
+	    if (data.result.length === 0) {
+	        $('.result-item-container').append(endLine());
+	    } else {
+	        $('.result-item-container').append(searchResult(data));
+	        $('.result-item-container').append(loadMore());
+	        $('.load-more-report').on('click', loadMoreReport);
+	    }
 	}).fail(function (xhr, errorType, error) {
-	    
+
 	});
 
 	// $('.load-more-report').on('click', loadMoreReport);
@@ -297,6 +312,13 @@
 
 	var template=__webpack_require__(2);
 	module.exports=template('mobile/tpl/load-more','<div class="load-more-container"> <a href="javascript:;" class="load-more-report" disabled="0">点击加载更多报告</a> </div>');
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var template=__webpack_require__(2);
+	module.exports=template('mobile/tpl/end-line','<div class="end-line"> <span class="end-line-info">END</span> </div>');
 
 /***/ }
 /******/ ]);

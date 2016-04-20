@@ -1,5 +1,6 @@
 var searchResult = require('../../tpl/search-result.tpl');
 var loadMore = require('../../tpl/load-more.tpl');
+var endLine = require('../../tpl/end-line.tpl');
 
 // var test_data = {
 //     result: [{
@@ -56,9 +57,13 @@ function loadMoreReport(e) {
         // }, 500);
         $.ajax({}).done(function (data) {
             $this.remove();
-            $('.result-item-container').append(searchResult(data));
-            $('.result-item-container').append(loadMore());
-            $('.load-more-report').on('click', loadMoreReport);
+            if (data.result.length === 0) {
+                $('.result-item-container').append(endLine());
+            } else {
+                $('.result-item-container').append(searchResult(data));
+                $('.result-item-container').append(loadMore());
+                $('.load-more-report').on('click', loadMoreReport);
+            }
         }).fail(function () {
 
         });
@@ -94,12 +99,15 @@ $('#search-input').on('keyup', function (e) {
             type: 'POST',
             data: {keyword: searchContent}
         }).done(function (data) {
-            $('.result-item-container').empty();
-            $('.load-more-container').remove();
-            $('.result-item-container').append(searchResult(data));
-            $('.result-item-container').append(loadMore());
-            $('.load-more-report').on('click', loadMoreReport);
             $('.loading-icon').addClass('hide');
+            $('.result-item-container').empty();
+            if (data.result.length === 0) {
+                $('.result-item-container').append(endLine());
+            } else {
+                $('.result-item-container').append(searchResult(data));
+                $('.result-item-container').append(loadMore());
+                $('.load-more-report').on('click', loadMoreReport);
+            }
         }).fail(function () {
 
         });
@@ -119,9 +127,16 @@ $.ajax({
     url: '/main_page',
     type: 'GET'
 }).done(function (data) {
-
+    $('.loading-icon').addClass('hide');
+    if (data.result.length === 0) {
+        $('.result-item-container').append(endLine());
+    } else {
+        $('.result-item-container').append(searchResult(data));
+        $('.result-item-container').append(loadMore());
+        $('.load-more-report').on('click', loadMoreReport);
+    }
 }).fail(function (xhr, errorType, error) {
-    
+
 });
 
 // $('.load-more-report').on('click', loadMoreReport);
