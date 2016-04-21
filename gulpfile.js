@@ -20,7 +20,8 @@ gulp.task('mobile_webpack', function () {
     return gulp.src('./mobile/scripts/src/index.js')
         .pipe(webpack({
             entry: {
-                index: './mobile/scripts/src/index.js'
+                index: './mobile/scripts/src/index.js',
+                report_detail: './mobile/scripts/src/report_detail.js'
             },
             output: {
                 filename: '[name].js'
