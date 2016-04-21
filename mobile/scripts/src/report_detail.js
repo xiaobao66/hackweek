@@ -50,13 +50,14 @@ $('.download-btn').on('tap', function (e) {
 });
 
 if (search !== '') {
+    var document_id = search.split('=')[1];
     $.ajax({
         url: '/document_detail',
         type: 'POST',
-        data: {document_id: search}
+        data: {document_id: document_id}
     }).done(function (data) {
         $('.report-container').append(reportThumb(data));
-        if(data.result.preview.length === 0) {
+        if (data.result.preview.length === 0) {
             $('.report-preview-container').append(reportMiss());
         } else {
             $('.report-preview-container').append(reportPreview(data.result));
