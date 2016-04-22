@@ -65,6 +65,7 @@ function loadMoreReport(e) {
             $.ajax({
                 url: '/main_page',
                 type: 'POST',
+                contentType: 'application/json',
                 data: {
                     begin: pageBegin,
                     count: itemCount
@@ -88,6 +89,7 @@ function loadMoreReport(e) {
             $.ajax({
                 url: '/search',
                 type: 'POST',
+                contentType: 'application/json',
                 data: {
                     keyword: searchInfo,
                     begin: pageBegin,
@@ -172,6 +174,7 @@ $('#search-input').on('keyup', function (e) {
         $.ajax({
             url: '/search',
             type: 'POST',
+            contentType: 'application/json',
             data: {
                 keyword: searchContent,
                 begin: pageBegin,
@@ -210,6 +213,7 @@ $('.cancel-btn').on('click', function (e) {
 $.ajax({
     url: '/main_page',
     type: 'POST',
+    contentType: 'application/json',
     data: {
         begin: pageBegin,
         count: itemCount

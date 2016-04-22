@@ -111,6 +111,7 @@
 	            $.ajax({
 	                url: '/main_page',
 	                type: 'POST',
+	                contentType: 'application/json',
 	                data: {
 	                    begin: pageBegin,
 	                    count: itemCount
@@ -134,6 +135,7 @@
 	            $.ajax({
 	                url: '/search',
 	                type: 'POST',
+	                contentType: 'application/json',
 	                data: {
 	                    keyword: searchInfo,
 	                    begin: pageBegin,
@@ -218,6 +220,7 @@
 	        $.ajax({
 	            url: '/search',
 	            type: 'POST',
+	            contentType: 'application/json',
 	            data: {
 	                keyword: searchContent,
 	                begin: pageBegin,
@@ -256,6 +259,7 @@
 	$.ajax({
 	    url: '/main_page',
 	    type: 'POST',
+	    contentType: 'application/json',
 	    data: {
 	        begin: pageBegin,
 	        count: itemCount
