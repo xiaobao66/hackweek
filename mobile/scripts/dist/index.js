@@ -49,6 +49,11 @@
 	var endLine = __webpack_require__(4);
 	var Reminder = __webpack_require__(5);
 
+	var pageBegin = 0;
+	var itemCount = 6;
+	var mainFlag = 1;
+	var searchInfo = '';
+
 	// var test_data = {
 	//     result: [{
 	//         document_id: 1,
@@ -102,17 +107,75 @@
 	        //     $('.result-item-container').append(loadMore());
 	        //     $('.load-more-report').on('click', loadMoreReport);
 	        // }, 500);
-	        $.ajax({}).done(function (data) {
-	            $this.remove();
-	            if (data.result.length === 0) {
-	                $('.result-item-container').append(endLine());
-	            } else {
-	                $('.result-item-container').append(searchResult(data));
-	                $('.result-item-container').append(loadMore());
-	                $('.load-more-report').on('click', loadMoreReport);
-	            }
-	        }).fail(function () {
+	        if (mainFlag === 1) {
+	            $.ajax({
+	                url: '/main_page',
+	                type: 'POST',
+	                data: {
+	                    begin: pageBegin,
+	                    count: itemCount
+	                }
+	            }).done(function (data) {
+	                $this.remove();
+	                if (data.result.length === 0) {
+	                    $('.result-item-container').append(endLine());
+	                } else {
+	                    pageBegin += 1;
+	                    $('.result-item-container').append(searchResult(data));
+	                    jumpDetail(false);
+	                    $('.result-item-container').append(loadMore());
+	                    $('.load-more-report').on('click', loadMoreReport);
+	                }
+	            }).fail(function () {
+	                $('.loading-icon').addClass('hide');
+	                reminder.show('加载失败，请重试');
+	            });
+	        } else {
+	            $.ajax({
+	                url: '/search',
+	                type: 'POST',
+	                data: {
+	                    keyword: searchInfo,
+	                    begin: pageBegin,
+	                    count: itemCount
+	                }
+	            }).done(function (data) {
+	                $this.remove();
+	                if (data.result.length === 0) {
+	                    $('.result-item-container').append(endLine());
+	                } else {
+	                    pageBegin += 1;
+	                    $('.result-item-container').append(searchResult(data));
+	                    jumpDetail(false);
+	                    $('.result-item-container').append(loadMore());
+	                    $('.load-more-report').on('click', loadMoreReport);
+	                }
+	            }).fail(function () {
+	                $('.loading-icon').addClass('hide');
+	                reminder.show('加载失败，请重试');
+	            });
+	        }
+	    }
+	}
 
+	function jumpDetail(flag) {
+	    if (flag) {
+	        $('.result-item').on('tap', function (e) {
+	            var inputElem = $(e.currentTarget).children('input'),
+	                document_id = $(inputElem).val();
+	            var url = "./report_detail.html?";
+	            document_id = encodeURIComponent(document_id);
+	            url = url + 'document_id=' + document_id;
+	            window.location.href = url;
+	        });
+	    } else {
+	        $('.result-item').off('tap').on('tap', function (e) {
+	            var inputElem = $(e.currentTarget).children('input'),
+	                document_id = $(inputElem).val();
+	            var url = "./report_detail.html?";
+	            document_id = encodeURIComponent(document_id);
+	            url = url + 'document_id=' + document_id;
+	            window.location.href = url;
 	        });
 	    }
 	}
@@ -143,23 +206,40 @@
 	        //     $('.loading-icon').addClass('hide');
 	        // }, 500);
 	        var searchContent = $(e.target).val();
+	        if (!searchContent) {
+	            return;
+	        }
+	        searchInfo = searchContent;
 	        $('.loading-icon').removeClass('hide');
+	        var pageBeginbak = pageBegin,
+	            mainFlagbak = mainFlag;
+	        pageBegin = 0;
+	        mainFlag = 0;
 	        $.ajax({
 	            url: '/search',
 	            type: 'POST',
-	            data: {keyword: searchContent}
+	            data: {
+	                keyword: searchContent,
+	                begin: pageBegin,
+	                count: itemCount
+	            }
 	        }).done(function (data) {
 	            $('.loading-icon').addClass('hide');
 	            $('.result-item-container').empty();
 	            if (data.result.length === 0) {
 	                $('.result-item-container').append(endLine());
 	            } else {
+	                pageBegin += 1;
 	                $('.result-item-container').append(searchResult(data));
+	                jumpDetail(true);
 	                $('.result-item-container').append(loadMore());
 	                $('.load-more-report').on('click', loadMoreReport);
 	            }
 	        }).fail(function () {
-
+	            $('.loading-icon').addClass('hide');
+	            reminder.show('网络连接错误，请重试');
+	            pageBegin = pageBeginbak;
+	            mainFlag = mainFlagbak;
 	        });
 	    }
 	});
@@ -175,13 +255,19 @@
 
 	$.ajax({
 	    url: '/main_page',
-	    type: 'GET'
+	    type: 'POST',
+	    data: {
+	        begin: pageBegin,
+	        count: itemCount
+	    }
 	}).done(function (data) {
 	    $('.loading-icon').addClass('hide');
 	    if (data.result.length === 0) {
 	        $('.result-item-container').append(endLine());
 	    } else {
+	        pageBegin += 1;
 	        $('.result-item-container').append(searchResult(data));
+	        jumpDetail(true);
 	        $('.result-item-container').append(loadMore());
 	        $('.load-more-report').on('click', loadMoreReport);
 	    }
@@ -189,6 +275,8 @@
 	    $('.loading-icon').addClass('hide');
 	    reminder.show('网络连接错误，请重试');
 	});
+
+	// jumpDetail();
 
 	// $('.load-more-report').on('click', loadMoreReport);
 
