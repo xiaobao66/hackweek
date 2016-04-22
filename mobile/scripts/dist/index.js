@@ -120,7 +120,7 @@
 	                if (data.result.length === 0) {
 	                    $('.result-item-container').append(endLine());
 	                } else {
-	                    pageBegin += 1;
+	                    pageBegin += itemCount;
 	                    $('.result-item-container').append(searchResult(data));
 	                    jumpDetail(false);
 	                    $('.result-item-container').append(loadMore());
@@ -144,7 +144,7 @@
 	                if (data.result.length === 0) {
 	                    $('.result-item-container').append(endLine());
 	                } else {
-	                    pageBegin += 1;
+	                    pageBegin += itemCount;
 	                    $('.result-item-container').append(searchResult(data));
 	                    jumpDetail(false);
 	                    $('.result-item-container').append(loadMore());
@@ -229,7 +229,7 @@
 	            if (data.result.length === 0) {
 	                $('.result-item-container').append(endLine());
 	            } else {
-	                pageBegin += 1;
+	                pageBegin += itemCount;
 	                $('.result-item-container').append(searchResult(data));
 	                jumpDetail(true);
 	                $('.result-item-container').append(loadMore());
@@ -265,7 +265,7 @@
 	    if (data.result.length === 0) {
 	        $('.result-item-container').append(endLine());
 	    } else {
-	        pageBegin += 1;
+	        pageBegin += itemCount;
 	        $('.result-item-container').append(searchResult(data));
 	        jumpDetail(true);
 	        $('.result-item-container').append(loadMore());

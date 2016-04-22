@@ -46,7 +46,12 @@ if (searchUrl.indexOf('?') !== -1) {
 }
 
 $('.download-btn').on('tap', function (e) {
+    var url = '/download/' + search;
     $('.report-download').addClass('show-download-info');
+    $.ajax({
+        url: url,
+        type: 'GET'
+    });
 });
 
 if (search !== '') {
@@ -54,7 +59,9 @@ if (search !== '') {
     $.ajax({
         url: '/document_detail',
         type: 'POST',
-        data: {document_id: document_id}
+        data: {
+            document_id: document_id
+        }
     }).done(function (data) {
         $('.report-container').append(reportThumb(data));
         if (data.result.preview.length === 0) {
