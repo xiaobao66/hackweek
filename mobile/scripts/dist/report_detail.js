@@ -105,7 +105,6 @@
 	    $.ajax({
 	        url: '/document_detail',
 	        type: 'POST',
-	        contentType: 'application/json',
 	        data: {
 	            document_id: document_id
 	        }
