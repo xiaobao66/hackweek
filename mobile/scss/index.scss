@@ -150,6 +150,10 @@ body {
     @include px2px(font-size, 32px);
     font-weight: bold;
     color: #292929;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .file-thumb-info {
