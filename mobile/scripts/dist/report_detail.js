@@ -664,7 +664,7 @@
 	$out+=$escape(result.document_name);
 	$out+='</p> <p class="report-thumb">';
 	$out+=$escape(result.grade);
-	$out+=$escape(result.institude);
+	$out+=$escape(result.institute);
 	$out+=' ';
 	$out+=$escape(result.class);
 	$out+=' ';

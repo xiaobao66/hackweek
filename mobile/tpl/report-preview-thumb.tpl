@@ -7,7 +7,7 @@
 {{/if}}
 <div class="report-info-container">
     <p class="report-name">{{result.document_name}}</p>
-    <p class="report-thumb">{{result.grade}}{{result.institude}} {{result.class}} {{result.uploader}}</p>
+    <p class="report-thumb">{{result.grade}}{{result.institute}} {{result.class}} {{result.uploader}}</p>
     <p class="report-download-info">
         已有<span class="report-download-number">{{result.downloads}}</span>人下载
     </p>

@@ -13,7 +13,7 @@
         <!--<span class="author-academy">13级计算机学院</span>-->
         <!--<span class="experiment-name">C语言课设</span>-->
         <!--<span class="author-name">雪君</span>-->
-        {{$value.grade}}{{$value.institude}} {{$value.class}} {{$value.uploader}}
+        {{$value.grade}}{{$value.institute}} {{$value.class}} {{$value.uploader}}
     </p>
     <p class="file-download-info">
         已有<span class="download-num">{{$value.downloads}}</span>人下载
