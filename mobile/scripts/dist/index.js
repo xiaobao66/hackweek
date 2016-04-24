@@ -301,6 +301,7 @@
 	$out+=' <h3 class="filename">';
 	$out+=$escape($value.document_name);
 	$out+='</h3> <p class="file-thumb-info">    ';
+	$out+=$escape($value.grade);
 	$out+=$escape($value.institude);
 	$out+=' ';
 	$out+=$escape($value.class);

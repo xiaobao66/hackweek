@@ -616,8 +616,8 @@
 	var template=__webpack_require__(2);
 	module.exports=template('mobile/tpl/report-download-info',function($data,$filename
 	/**/) {
-	'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,document_id=$data.document_id,$out='';$out+='<div class="report-download-container hide"> <p>请你在公众号输入并发送该编号，以获取下载链接。（文档仅供学习参考）</p> <p class="report-download-id"> <span>';
-	$out+=$escape(document_id);
+	'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,code=$data.code,$out='';$out+='<div class="report-download-container hide"> <p>请你在公众号输入并发送该编号，以获取下载链接。（文档仅供学习参考）</p> <p class="report-download-id"> <span>';
+	$out+=$escape(code);
 	$out+='</span> </p> </div>';
 	return new String($out);
 	});
@@ -663,6 +663,7 @@
 	$out+=' <div class="report-info-container"> <p class="report-name">';
 	$out+=$escape(result.document_name);
 	$out+='</p> <p class="report-thumb">';
+	$out+=$escape(result.grade);
 	$out+=$escape(result.institude);
 	$out+=' ';
 	$out+=$escape(result.class);
