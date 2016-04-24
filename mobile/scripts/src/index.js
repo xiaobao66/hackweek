@@ -83,6 +83,8 @@ function loadMoreReport(e) {
             }).fail(function () {
                 $('.loading-icon').addClass('hide');
                 reminder.show('加载失败，请重试');
+                $this.attr('disabled', 0);
+                $this.text('点击加载更多报告');
             });
         } else {
             $.ajax({
@@ -107,6 +109,8 @@ function loadMoreReport(e) {
             }).fail(function () {
                 $('.loading-icon').addClass('hide');
                 reminder.show('加载失败，请重试');
+                $this.attr('disabled', 0);
+                $this.text('点击加载更多报告');
             });
         }
     }
