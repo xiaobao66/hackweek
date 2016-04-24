@@ -306,6 +306,7 @@
 	$out+=$escape($value.document_name);
 	$out+='</h3> <p class="file-thumb-info">    ';
 	$out+=$escape($value.grade);
+	$out+=' ';
 	$out+=$escape($value.institute);
 	$out+=' ';
 	$out+=$escape($value.class);
