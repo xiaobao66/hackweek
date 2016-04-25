@@ -119,6 +119,10 @@
 	                $this.remove();
 	                if (data.result.length === 0) {
 	                    $('.result-item-container').append(endLine());
+	                } else if (data.result.length < itemCount) {
+	                    $('.result-item-container').append(searchResult(data));
+	                    jumpDetail(false);
+	                    $('.result-item-container').append(endLine());
 	                } else {
 	                    pageBegin += itemCount;
 	                    $('.result-item-container').append(searchResult(data));
@@ -144,6 +148,10 @@
 	            }).done(function (data) {
 	                $this.remove();
 	                if (data.result.length === 0) {
+	                    $('.result-item-container').append(endLine());
+	                } else if (data.result.length < itemCount) {
+	                    $('.result-item-container').append(searchResult(data));
+	                    jumpDetail(false);
 	                    $('.result-item-container').append(endLine());
 	                } else {
 	                    pageBegin += itemCount;
