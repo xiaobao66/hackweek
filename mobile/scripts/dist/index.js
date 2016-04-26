@@ -319,9 +319,9 @@
 	$out+=' <img class="result-filetype-icon" src="images/ppt.png"> ';
 	}else if($value.type === 'pdf'){
 	$out+=' <img class="result-filetype-icon" src="images/pdf.png"> ';
-	}else if(result.type === 'zip'){
+	}else if($value.type === 'zip'){
 	$out+=' <img class="result-filetype-icon" src="images/zip.png"> ';
-	}else if(result.type === 'rar'){
+	}else if($value.type === 'rar'){
 	$out+=' <img class="result-filetype-icon" src="images/rar.png"> ';
 	}
 	$out+=' <h3 class="filename">';

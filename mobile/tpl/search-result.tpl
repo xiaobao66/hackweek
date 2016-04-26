@@ -7,9 +7,9 @@
     <img class="result-filetype-icon" src="images/ppt.png">
     {{else if $value.type === 'pdf'}}
     <img class="result-filetype-icon" src="images/pdf.png">
-    {{else if result.type === 'zip'}}
+    {{else if $value.type === 'zip'}}
     <img class="result-filetype-icon" src="images/zip.png">
-    {{else if result.type === 'rar'}}
+    {{else if $value.type === 'rar'}}
     <img class="result-filetype-icon" src="images/rar.png">
     {{/if}}
     <h3 class="filename">{{$value.document_name}}</h3>
