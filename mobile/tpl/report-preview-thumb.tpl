@@ -4,6 +4,10 @@
 <img src="images/ppt.png">
 {{else if result.type === 'pdf'}}
 <img src="images/pdf.png">
+{{else if result.type === 'zip'}}
+<img src="images/zip.png">
+{{else if result.type === 'rar'}}
+<img src="images/rar.png">
 {{/if}}
 <div class="report-info-container">
     <p class="report-name">{{result.document_name}}</p>

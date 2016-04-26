@@ -659,6 +659,10 @@
 	$out+=' <img src="images/ppt.png"> ';
 	}else if(result.type === 'pdf'){
 	$out+=' <img src="images/pdf.png"> ';
+	}else if(result.type === 'zip'){
+	$out+=' <img src="images/zip.png"> ';
+	}else if(result.type === 'rar'){
+	$out+=' <img src="images/rar.png"> ';
 	}
 	$out+=' <div class="report-info-container"> <p class="report-name">';
 	$out+=$escape(result.document_name);

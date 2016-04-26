@@ -309,6 +309,10 @@
 	$out+=' <img class="result-filetype-icon" src="images/ppt.png"> ';
 	}else if($value.type === 'pdf'){
 	$out+=' <img class="result-filetype-icon" src="images/pdf.png"> ';
+	}else if(result.type === 'zip'){
+	$out+=' <img class="result-filetype-icon" src="images/zip.png"> ';
+	}else if(result.type === 'rar'){
+	$out+=' <img class="result-filetype-icon" src="images/rar.png"> ';
 	}
 	$out+=' <h3 class="filename">';
 	$out+=$escape($value.document_name);
