@@ -44,11 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var reportDownload = __webpack_require__(11);
-	var reportPreview = __webpack_require__(12);
-	var reportThumb = __webpack_require__(13);
-	var reportMiss = __webpack_require__(14);
-	var Reminder = __webpack_require__(5);
+	var reportDownload = __webpack_require__(12);
+	var reportPreview = __webpack_require__(13);
+	var reportThumb = __webpack_require__(14);
+	var reportMiss = __webpack_require__(15);
+	var Reminder = __webpack_require__(6);
 
 	// var test_data = {
 	//     document_id: 2123,
@@ -214,11 +214,12 @@
 /***/ },
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(6);
-	var reminderTpl = __webpack_require__(10);
+	__webpack_require__(7);
+	var reminderTpl = __webpack_require__(11);
 
 	function Reminder() {
 
@@ -249,16 +250,16 @@
 	module.exports = Reminder;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(7);
+	var content = __webpack_require__(8);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -275,10 +276,10 @@
 	}
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
@@ -289,7 +290,7 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -345,7 +346,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -597,7 +598,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);
@@ -610,7 +611,7 @@
 	});
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);
@@ -623,7 +624,7 @@
 	});
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);
@@ -647,7 +648,7 @@
 	});
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);
@@ -681,7 +682,7 @@
 	});
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);

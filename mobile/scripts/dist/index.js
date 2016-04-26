@@ -47,7 +47,8 @@
 	var searchResult = __webpack_require__(1);
 	var loadMore = __webpack_require__(3);
 	var endLine = __webpack_require__(4);
-	var Reminder = __webpack_require__(5);
+	var notFound = __webpack_require__(5);
+	var Reminder = __webpack_require__(6);
 
 	var pageBegin = 0;
 	var itemCount = 6;
@@ -115,7 +116,7 @@
 	                    begin: pageBegin,
 	                    count: itemCount
 	                }
-	            }).done(function (data) {
+	            }).done(function(data) {
 	                $this.remove();
 	                if (data.result.length === 0) {
 	                    $('.result-item-container').append(endLine());
@@ -130,7 +131,7 @@
 	                    $('.result-item-container').append(loadMore());
 	                    $('.load-more-report').on('click', loadMoreReport);
 	                }
-	            }).fail(function () {
+	            }).fail(function() {
 	                $('.loading-icon').addClass('hide');
 	                reminder.show('加载失败，请重试');
 	                $this.attr('disabled', 0);
@@ -145,7 +146,7 @@
 	                    begin: pageBegin,
 	                    count: itemCount
 	                }
-	            }).done(function (data) {
+	            }).done(function(data) {
 	                $this.remove();
 	                if (data.result.length === 0) {
 	                    $('.result-item-container').append(endLine());
@@ -160,7 +161,7 @@
 	                    $('.result-item-container').append(loadMore());
 	                    $('.load-more-report').on('click', loadMoreReport);
 	                }
-	            }).fail(function () {
+	            }).fail(function() {
 	                $('.loading-icon').addClass('hide');
 	                reminder.show('加载失败，请重试');
 	                $this.attr('disabled', 0);
@@ -172,7 +173,7 @@
 
 	function jumpDetail(flag) {
 	    if (flag) {
-	        $('.result-item').on('tap', function (e) {
+	        $('.result-item').on('tap', function(e) {
 	            var inputElem = $(e.currentTarget).children('input'),
 	                document_id = $(inputElem).val();
 	            var url = "./report_detail.html?";
@@ -181,7 +182,7 @@
 	            window.location.href = url;
 	        });
 	    } else {
-	        $('.result-item').off('tap').on('tap', function (e) {
+	        $('.result-item').off('tap').on('tap', function(e) {
 	            var inputElem = $(e.currentTarget).children('input'),
 	                document_id = $(inputElem).val();
 	            var url = "./report_detail.html?";
@@ -194,7 +195,7 @@
 
 	var attachFastClick = Origami.fastclick;
 	attachFastClick(document.body);
-	$('#search-input').on('focus', function () {
+	$('#search-input').on('focus', function() {
 	    $('.search').addClass('show-cancel-btn');
 	    // $('.mask-layer').removeClass('hide');
 	});
@@ -202,11 +203,11 @@
 	var reminder = new Reminder();
 	reminder.init();
 
-	$('#search-input').on('blur', function () {
+	$('#search-input').on('blur', function() {
 	    $('.search').removeClass('show-cancel-btn');
 	});
 
-	$('#search-input').on('keyup', function (e) {
+	$('#search-input').on('keyup', function(e) {
 	    if (e.keyCode === 13) {
 	        // $('.result-item-container').empty();
 	        // $('.load-more-container').remove();
@@ -235,12 +236,12 @@
 	                begin: pageBegin,
 	                count: itemCount
 	            }
-	        }).done(function (data) {
+	        }).done(function(data) {
 	            $('.loading-icon').addClass('hide');
 	            $('.result-item-container').empty();
 	            if (data.result.length === 0) {
 	                // $('.result-item-container').append(endLine());
-	                $('.not-found-report').removeClass('hide');
+	                $('.result-item-container').append(notFound());
 	            } else if (data.result.length < itemCount) {
 	                $('.result-item-container').append(searchResult(data));
 	                jumpDetail(true);
@@ -252,7 +253,7 @@
 	                $('.result-item-container').append(loadMore());
 	                $('.load-more-report').on('click', loadMoreReport);
 	            }
-	        }).fail(function () {
+	        }).fail(function() {
 	            $('.loading-icon').addClass('hide');
 	            reminder.show('网络连接错误，请重试');
 	            pageBegin = pageBeginbak;
@@ -261,7 +262,7 @@
 	    }
 	});
 
-	$('.cancel-btn').on('click', function (e) {
+	$('.cancel-btn').on('click', function(e) {
 	    e.preventDefault();
 	    $('#search-input').val('').blur();
 	    $('.search').removeClass('show-cancel-btn');
@@ -277,12 +278,12 @@
 	        begin: pageBegin,
 	        count: itemCount
 	    }
-	}).done(function (data) {
+	}).done(function(data) {
 	    $('.loading-icon').addClass('hide');
 	    if (data.result.length === 0) {
 	        // $('.result-item-container').append(endLine());
 	        $('.not-found-report').removeClass('hide');
-	    } else if(data.result.length < itemCount) {
+	    } else if (data.result.length < itemCount) {
 	        $('.result-item-container').append(searchResult(data));
 	        jumpDetail(true);
 	        $('.result-item-container').append(endLine());
@@ -293,7 +294,7 @@
 	        $('.result-item-container').append(loadMore());
 	        $('.load-more-report').on('click', loadMoreReport);
 	    }
-	}).fail(function (xhr, errorType, error) {
+	}).fail(function(xhr, errorType, error) {
 	    $('.loading-icon').addClass('hide');
 	    reminder.show('网络连接错误，请重试');
 	});
@@ -301,6 +302,7 @@
 	// jumpDetail();
 
 	// $('.load-more-report').on('click', loadMoreReport);
+
 
 /***/ },
 /* 1 */
@@ -445,8 +447,15 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(6);
-	var reminderTpl = __webpack_require__(10);
+	var template=__webpack_require__(2);
+	module.exports=template('mobile/tpl/not-found-report','<img src="images/not-found-report.png" class="not-found-report">');
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(7);
+	var reminderTpl = __webpack_require__(11);
 
 	function Reminder() {
 
@@ -477,16 +486,16 @@
 	module.exports = Reminder;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(7);
+	var content = __webpack_require__(8);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -503,10 +512,10 @@
 	}
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
@@ -517,7 +526,7 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -573,7 +582,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -825,7 +834,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var template=__webpack_require__(2);

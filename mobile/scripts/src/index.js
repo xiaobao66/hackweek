@@ -1,6 +1,7 @@
 var searchResult = require('../../tpl/search-result.tpl');
 var loadMore = require('../../tpl/load-more.tpl');
 var endLine = require('../../tpl/end-line.tpl');
+var notFound = require('../../tpl/not-found-report.tpl');
 var Reminder = require('./reminder');
 
 var pageBegin = 0;
@@ -69,7 +70,7 @@ function loadMoreReport(e) {
                     begin: pageBegin,
                     count: itemCount
                 }
-            }).done(function (data) {
+            }).done(function(data) {
                 $this.remove();
                 if (data.result.length === 0) {
                     $('.result-item-container').append(endLine());
@@ -84,7 +85,7 @@ function loadMoreReport(e) {
                     $('.result-item-container').append(loadMore());
                     $('.load-more-report').on('click', loadMoreReport);
                 }
-            }).fail(function () {
+            }).fail(function() {
                 $('.loading-icon').addClass('hide');
                 reminder.show('加载失败，请重试');
                 $this.attr('disabled', 0);
@@ -99,7 +100,7 @@ function loadMoreReport(e) {
                     begin: pageBegin,
                     count: itemCount
                 }
-            }).done(function (data) {
+            }).done(function(data) {
                 $this.remove();
                 if (data.result.length === 0) {
                     $('.result-item-container').append(endLine());
@@ -114,7 +115,7 @@ function loadMoreReport(e) {
                     $('.result-item-container').append(loadMore());
                     $('.load-more-report').on('click', loadMoreReport);
                 }
-            }).fail(function () {
+            }).fail(function() {
                 $('.loading-icon').addClass('hide');
                 reminder.show('加载失败，请重试');
                 $this.attr('disabled', 0);
@@ -126,7 +127,7 @@ function loadMoreReport(e) {
 
 function jumpDetail(flag) {
     if (flag) {
-        $('.result-item').on('tap', function (e) {
+        $('.result-item').on('tap', function(e) {
             var inputElem = $(e.currentTarget).children('input'),
                 document_id = $(inputElem).val();
             var url = "./report_detail.html?";
@@ -135,7 +136,7 @@ function jumpDetail(flag) {
             window.location.href = url;
         });
     } else {
-        $('.result-item').off('tap').on('tap', function (e) {
+        $('.result-item').off('tap').on('tap', function(e) {
             var inputElem = $(e.currentTarget).children('input'),
                 document_id = $(inputElem).val();
             var url = "./report_detail.html?";
@@ -148,7 +149,7 @@ function jumpDetail(flag) {
 
 var attachFastClick = Origami.fastclick;
 attachFastClick(document.body);
-$('#search-input').on('focus', function () {
+$('#search-input').on('focus', function() {
     $('.search').addClass('show-cancel-btn');
     // $('.mask-layer').removeClass('hide');
 });
@@ -156,11 +157,11 @@ $('#search-input').on('focus', function () {
 var reminder = new Reminder();
 reminder.init();
 
-$('#search-input').on('blur', function () {
+$('#search-input').on('blur', function() {
     $('.search').removeClass('show-cancel-btn');
 });
 
-$('#search-input').on('keyup', function (e) {
+$('#search-input').on('keyup', function(e) {
     if (e.keyCode === 13) {
         // $('.result-item-container').empty();
         // $('.load-more-container').remove();
@@ -189,12 +190,12 @@ $('#search-input').on('keyup', function (e) {
                 begin: pageBegin,
                 count: itemCount
             }
-        }).done(function (data) {
+        }).done(function(data) {
             $('.loading-icon').addClass('hide');
             $('.result-item-container').empty();
             if (data.result.length === 0) {
                 // $('.result-item-container').append(endLine());
-                $('.not-found-report').removeClass('hide');
+                $('.result-item-container').append(notFound());
             } else if (data.result.length < itemCount) {
                 $('.result-item-container').append(searchResult(data));
                 jumpDetail(true);
@@ -206,7 +207,7 @@ $('#search-input').on('keyup', function (e) {
                 $('.result-item-container').append(loadMore());
                 $('.load-more-report').on('click', loadMoreReport);
             }
-        }).fail(function () {
+        }).fail(function() {
             $('.loading-icon').addClass('hide');
             reminder.show('网络连接错误，请重试');
             pageBegin = pageBeginbak;
@@ -215,7 +216,7 @@ $('#search-input').on('keyup', function (e) {
     }
 });
 
-$('.cancel-btn').on('click', function (e) {
+$('.cancel-btn').on('click', function(e) {
     e.preventDefault();
     $('#search-input').val('').blur();
     $('.search').removeClass('show-cancel-btn');
@@ -231,12 +232,12 @@ $.ajax({
         begin: pageBegin,
         count: itemCount
     }
-}).done(function (data) {
+}).done(function(data) {
     $('.loading-icon').addClass('hide');
     if (data.result.length === 0) {
         // $('.result-item-container').append(endLine());
         $('.not-found-report').removeClass('hide');
-    } else if(data.result.length < itemCount) {
+    } else if (data.result.length < itemCount) {
         $('.result-item-container').append(searchResult(data));
         jumpDetail(true);
         $('.result-item-container').append(endLine());
@@ -247,7 +248,7 @@ $.ajax({
         $('.result-item-container').append(loadMore());
         $('.load-more-report').on('click', loadMoreReport);
     }
-}).fail(function (xhr, errorType, error) {
+}).fail(function(xhr, errorType, error) {
     $('.loading-icon').addClass('hide');
     reminder.show('网络连接错误，请重试');
 });
