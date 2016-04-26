@@ -221,3 +221,11 @@ body {
         @include px2px(font-size, 32px);
     }
 }
+
+.not-found-report {
+    position: absolute;
+    width: px2rem(400px);
+    top: 40%;
+    left: 50%;
+    @include translate(-50%, -50%);
+}

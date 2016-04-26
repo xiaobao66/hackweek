@@ -193,6 +193,11 @@ $('#search-input').on('keyup', function (e) {
             $('.loading-icon').addClass('hide');
             $('.result-item-container').empty();
             if (data.result.length === 0) {
+                // $('.result-item-container').append(endLine());
+                $('.not-found-report').removeClass('hide');
+            } else if (data.result.length < itemCount) {
+                $('.result-item-container').append(searchResult(data));
+                jumpDetail(true);
                 $('.result-item-container').append(endLine());
             } else {
                 pageBegin += itemCount;
@@ -229,6 +234,11 @@ $.ajax({
 }).done(function (data) {
     $('.loading-icon').addClass('hide');
     if (data.result.length === 0) {
+        // $('.result-item-container').append(endLine());
+        $('.not-found-report').removeClass('hide');
+    } else if(data.result.length < itemCount) {
+        $('.result-item-container').append(searchResult(data));
+        jumpDetail(true);
         $('.result-item-container').append(endLine());
     } else {
         pageBegin += itemCount;
