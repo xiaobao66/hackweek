@@ -92,14 +92,26 @@ body {
     position: absolute;
     top: px2rem(20px);
     bottom: px2rem(20px);
-    left: px2rem(25px);
-    right: px2rem(25px);
+    //left: px2rem(25px);
+    //right: px2rem(25px);
+    left: 0;
+    right: 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    img {
-        display: block;
+    background-color: #fff;
+    //img {
+    //    display: block;
+    //    width: 100%;
+    //    @include px2px(margin-bottom, 4px);
+    //}
+    iframe {
         width: 100%;
-        @include px2px(margin-bottom, 4px);
+        height: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 px2rem(25px);
+        -webkit-overflow-scrolling: touch;
     }
 }
 

@@ -65,7 +65,12 @@ if (search !== '') {
         }
     }).done(function (data) {
         $('.report-container').append(reportThumb(data));
-        if (data.result.preview.length === 0) {
+        // if (data.result.preview.length === 0) {
+        //     $('.report-preview-container').append(reportMiss());
+        // } else {
+        //     $('.report-preview-container').append(reportPreview(data.result));
+        // }
+        if (!data.result.preview) {
             $('.report-preview-container').append(reportMiss());
         } else {
             $('.report-preview-container').append(reportPreview(data.result));
@@ -77,4 +82,3 @@ if (search !== '') {
         reminder.show('网络连接错误，请重试');
     });
 }
-

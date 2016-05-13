@@ -111,7 +111,12 @@
 	        }
 	    }).done(function (data) {
 	        $('.report-container').append(reportThumb(data));
-	        if (data.result.preview.length === 0) {
+	        // if (data.result.preview.length === 0) {
+	        //     $('.report-preview-container').append(reportMiss());
+	        // } else {
+	        //     $('.report-preview-container').append(reportPreview(data.result));
+	        // }
+	        if (!data.result.preview) {
 	            $('.report-preview-container').append(reportMiss());
 	        } else {
 	            $('.report-preview-container').append(reportPreview(data.result));
@@ -123,8 +128,6 @@
 	        reminder.show('网络连接错误，请重试');
 	    });
 	}
-
-
 
 /***/ },
 /* 1 */,
@@ -637,13 +640,15 @@
 	}else if(type === 'pdf'){
 	$out+=' <div class="report-type-info">Pdf文档预览</div> ';
 	}
-	$out+=' <div class="report-preview"> ';
+	$out+='  <!--';
 	$each(preview,function($value,$index){
-	$out+=' <img src="';
+	$out+='--> <!--<img src="';
 	$out+=$escape($value);
-	$out+='"> ';
+	$out+='">--> <!--';
 	});
-	$out+=' </div>';
+	$out+='-->  <div class="report-preview"> <iframe src="';
+	$out+=$escape(preview);
+	$out+='"></iframe> </div>';
 	return new String($out);
 	});
 

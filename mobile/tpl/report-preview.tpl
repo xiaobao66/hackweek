@@ -5,8 +5,11 @@
 {{else if type === 'pdf'}}
 <div class="report-type-info">Pdf文档预览</div>
 {{/if}}
+<!--<div class="report-preview">-->
+    <!--{{each preview}}-->
+    <!--<img src="{{$value}}">-->
+    <!--{{/each}}-->
+<!--</div>-->
 <div class="report-preview">
-    {{each preview}}
-    <img src="{{$value}}">
-    {{/each}}
+    <iframe src="{{preview}}"></iframe>
 </div>
