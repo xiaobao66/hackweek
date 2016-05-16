@@ -64,6 +64,8 @@ if (search !== '') {
             document_id: document_id
         }
     }).done(function (data) {
+        var str = '我在"报告菌"上找到了' + data.result.document_name + ',这下不用担心了';
+        $('title').text(str);
         $('.report-container').append(reportThumb(data));
         // if (data.result.preview.length === 0) {
         //     $('.report-preview-container').append(reportMiss());
