@@ -58,11 +58,8 @@ $('.download-btn').on('tap', function (e) {
 if (search !== '') {
     var document_id = search.split('=')[1];
     $.ajax({
-        url: '/document_detail',
-        type: 'POST',
-        data: {
-            document_id: document_id
-        }
+        url: '/document_detail/' + document_id,
+        type: 'GET'
     }).done(function (data) {
         var str = '我在"报告菌"上找到了' + data.result.document_name + ',这下不用担心了';
         $('title').text(str);
