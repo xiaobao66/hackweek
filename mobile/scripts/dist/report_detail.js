@@ -91,7 +91,7 @@
 	    search = decodeURIComponent(searchUrl.substr(1));
 	}
 
-	$('.download-btn').on('tap', function (e) {
+	$('.download-btn').on('tap', function () {
 	    var document_id = search.split('=')[1];
 	    var url = '/download/' + document_id;
 	    $('.report-download').addClass('show-download-info');
