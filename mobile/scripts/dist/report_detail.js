@@ -130,10 +130,11 @@
 	                var container = ifrDoc.getElementById('page-container'),
 	                    pf = ifrDoc.getElementById('pf1');
 	                var scale = container.offsetWidth / pf.offsetWidth;
-	                var text = "div[id^='pf']{-webkit-transform: scaleX(" + scale + ");transform:scaleX(" + scale + ");-webkit-transform-origin: 0 100%;transform-origin: 0 100%}";
+	                var scaleTxt = "div[id^='pf']{-webkit-transform: scaleX(" + scale + ");transform:scaleX(" + scale + ");-webkit-transform-origin: 0 100%;transform-origin: 0 100%}";
+	                var touchTxt = "#page-container{-webkit-overflow-scrolling: touch;}";
 	                ifrStyle.setAttribute('type', 'text/css');
 	                ifrHead.appendChild(ifrStyle);
-	                ifrStyle.innerHTML = text;
+	                ifrStyle.innerHTML = scaleTxt + ' ' + touchTxt;
 	                $(ifr).off('load');
 	                $('.loading-icon').addClass('hide');
 	            });
