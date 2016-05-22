@@ -11,5 +11,5 @@
     <!--{{/each}}-->
 <!--</div>-->
 <div class="report-preview">
-    <iframe src="{{preview}}"></iframe>
+    <iframe src="{{preview}}" id="ifr-container"></iframe>
 </div>

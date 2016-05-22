@@ -117,16 +117,47 @@
 	        // }
 	        if (!data.result.preview) {
 	            $('.report-preview-container').append(reportMiss());
+	            $('.report-download').append(reportDownload(data.result));
+	            $('.loading-icon').addClass('hide');
 	        } else {
 	            $('.report-preview-container').append(reportPreview(data.result));
+	            $('.report-download').append(reportDownload(data.result));
+	            $('#ifr-container').on('load', function () {
+	                var ifr = document.getElementById('ifr-container'),
+	                    ifrDoc = ifr.contentDocument || ifr.contentWindow.document,
+	                    ifrHead = ifrDoc.getElementsByTagName('head')[0],
+	                    ifrStyle = document.createElement('style');
+	                var container = ifrDoc.getElementById('page-container'),
+	                    pf = ifrDoc.getElementById('pf1');
+	                var scale = container.offsetWidth / pf.offsetWidth;
+	                var text = "div[id^='pf']{-webkit-transform: scaleX(" + scale + ");transform:scaleX(" + scale + ");-webkit-transform-origin: 0 100%;transform-origin: 0 100%}";
+	                ifrStyle.setAttribute('type', 'text/css');
+	                ifrHead.appendChild(ifrStyle);
+	                ifrStyle.innerHTML = text;
+	                $(ifr).off('load');
+	                $('.loading-icon').addClass('hide');
+	            });
 	        }
-	        $('.report-download').append(reportDownload(data.result));
-	        $('.loading-icon').addClass('hide');
 	    }).fail(function () {
 	        // $('.loading-icon').addClass('hide');
 	        reminder.show('网络连接错误，请重试');
 	    });
 	}
+
+	// $('#ifr-container').on('load', function () {
+	//     var ifr = document.getElementById('ifr-container'),
+	//         ifrDoc = ifr.contentDocument || ifr.contentWindow.document,
+	//         ifrHead = ifrDoc.getElementsByTagName('head')[0],
+	//         ifrStyle = document.createElement('style');
+	//     var container = ifrDoc.getElementById('page-container'),
+	//         pf = ifrDoc.getElementById('pf1');
+	//     var scale = container.offsetWidth / pf.offsetWidth;
+	//     var text = "div[id^='pf']{-webkit-transform: scaleX(" + scale + ");transform:scaleX(" + scale + ");-webkit-transform-origin: 0 100%;transform-origin: 0 100%}";
+	//     ifrStyle.setAttribute('type', 'text/css');
+	//     ifrHead.appendChild(ifrStyle);
+	//     ifrStyle.innerHTML = text;
+	//     $(ifr).off('load');
+	// });
 
 /***/ },
 /* 1 */,
@@ -647,7 +678,7 @@
 	});
 	$out+='-->  <div class="report-preview"> <iframe src="';
 	$out+=$escape(preview);
-	$out+='"></iframe> </div>';
+	$out+='" id="ifr-container"></iframe> </div>';
 	return new String($out);
 	});
 
